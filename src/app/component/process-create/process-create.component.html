@@ -1,0 +1,63 @@
+<mat-card [style.background]="'lightgrey'">
+  <h2 style="text-align: center"> Enregistrer une nouvelle procédure</h2>
+
+  <form [formGroup]="processForm" (ngSubmit)="onSaveProcess()">
+
+
+    <div>
+
+      <mat-form-field>
+        <input color='primary' matInput type="text" id="processId" class="form-control" formControlName="processId" placeholder="Identifiant">
+      </mat-form-field>
+    </div>
+
+
+    <mat-grid-list cols="4" rowHeight="1:1">
+
+      <mat-grid-tile class="flexB" formArrayName="steps" *ngFor="let step of processForm.get('steps').controls; let i = index;"
+        [colspan]=1 [rowspan]=1>
+
+        <mat-card [style.background]='step.background' style="width: 100%; height: 100% " [formGroupName]="i">
+          <hr>
+
+          <h2 style="text-align:center "> Etape{{i+1}} </h2>
+
+          <h4>Ajouter une photo</h4>
+
+
+          <input id="fileToUpload" type="file" (input)="detectFiles($event,i)" accept="image/*">
+
+
+
+
+          <!-- <label for="text">Instruction</label>
+          <input type="text" id="text" formControlName="text"> -->
+          <div>
+            <mat-form-field style="width: 100%">
+              <textarea matInput type="text" id="text" formControlName="text" placeholder="Instruction"></textarea>
+            </mat-form-field>
+          </div>
+
+          <!-- <label for="text">Couleur de fond</label>
+          <input type="text" id="background" formControlName="background"> -->
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Importance" id="background" formControlName="background" [(value)]="step.background">
+                <mat-option value="green">Faible</mat-option>
+                <mat-option value="orange">Moyenne</mat-option>
+                <mat-option value="red">Elevée</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+        </mat-card>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-raised-button color="primary" [disabled]="processForm.invalid || fileIsUploading" type="submit">Enregistrer</button>
+    <button mat-raised-button color='primary' (click)="onBack()">Retour</button>
+
+  </form>
+  <button class="flexB" style="display: inline-block;" mat-fab color='primary' (click)="addStep()">+</button>
+</mat-card>

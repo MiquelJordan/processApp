@@ -1,0 +1,16 @@
+.flexA {
+    flex: 1 1 auto;
+  }
+
+.flexB{
+    margin:auto;
+    display:block;
+}
+.fullW {
+    width: auto;
+    
+  }
+  .example-card {
+    max-width: 400px;
+  }
+ 

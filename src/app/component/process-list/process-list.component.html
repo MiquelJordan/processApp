@@ -1,0 +1,24 @@
+<mat-card [style.background]="'lightgrey'">
+  <h2 style="text-align:center ">Vos Procédures</h2>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Identifiant" name="process" [(ngModel)]="process">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="onNewProcess()">Nouvelle Procédure</button>
+    <br>
+    <br>
+    <button mat-raised-button color="primary" *ngFor="let process of allProcess | filterProcess : process; let i = index" (click)="onViewProcess(i)">
+
+      <h3>{{ process.processId}}</h3>
+
+
+      <button mat-button (click)="onDeleteProcess(process)">Supprimer</button>
+
+    </button>
+
+
+
+
+  </div>
+</mat-card>

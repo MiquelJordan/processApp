@@ -1,0 +1,42 @@
+<mat-card *ngIf="process" [style.background]="'lightgrey'">
+
+  <h2 style="text-align: center">Procédure {{process.processId}}</h2>
+
+  <mat-grid-list cols="4" rowHeight="2:3">
+
+    <mat-grid-tile class="flexB" *ngFor="let step of process.steps;let i = index">
+
+      <mat-card [style.background]='step.background' style="width: 100%; height: 100% ">
+
+        <h2 style="text-align:center"> Etape {{i+1}}</h2>
+
+        <img mat-card-image [src]="step.photo">
+
+
+        <mat-card-content>
+          <span style="overflow: break;">
+
+            {{ step.text }}
+          </span>
+
+        </mat-card-content>
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <button mat-raised-button color='primary' (click)="onBack()">Retour</button>
+</mat-card>
+
+
+<!-- 
+<div>
+
+  <h1> {{ process.processId }}</h1>
+  <div *ngFor="let step of process.steps;let i = index">
+    <p> step {{i+1}}</p>
+    <h3>{{ step.text }}</h3>
+    <h3>{{ step.background }}</h3>
+
+    <img [src]="step.photo">
+  </div>
+</div> -->
